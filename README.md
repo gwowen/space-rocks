@@ -1,0 +1,1 @@
+The basic skeleton of an SDL 2 window, in a form I've found fairly friendly to making games. Mainly here in case my computer dies for the umpteenth time.
