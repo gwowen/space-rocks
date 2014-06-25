@@ -13,12 +13,26 @@ playState playState::m_playState;
 
 void playState::Init( gameEngine* game ) {
     
-  temp = Texture::textureLoad( "../helloworld.bmp", game->m_Renderer );
+    bgSurface = SDL_CreateRGBSurface( 0, SCREEN_WIDTH, SCREEN_HEIGHT, 32,
+                                      0,
+                                      0,  
+                                      0,  
+                                      0 );
+    
+    bgTexture = SDL_CreateTexture( game->m_Renderer,
+                                    SDL_PIXELFORMAT_ARGB8888,
+                                    SDL_TEXTUREACCESS_STREAMING,
+                                    SCREEN_WIDTH, SCREEN_HEIGHT );
+    
+    
+    
+  resetStars( bgStars );
     
 }
 
 void playState::Cleanup() {
-
+    
+  SDL_DestroyTexture( bgTexture );
   SDL_DestroyTexture( temp );
     
 }
@@ -50,10 +64,14 @@ void playState::handleEvents( gameEngine* game ) {
 
 void playState::Update( gameEngine* game) {
     
+    doStars( bgStars );
+    updateStars( bgSurface, bgStars );   
 }
 
 void playState::Draw( gameEngine* game) {
-  Texture::textureDraw( temp, game->m_Renderer, 0, 0 );
-  SDL_RenderPresent( game->m_Renderer );
+  
+    SDL_UpdateTexture( bgTexture, NULL, bgSurface->pixels, bgSurface->pitch );
+    SDL_RenderCopy( game->m_Renderer, bgTexture, NULL, NULL );
+    SDL_RenderPresent( game->m_Renderer );
     
 }

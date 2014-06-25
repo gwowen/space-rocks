@@ -21,7 +21,7 @@ bool gameEngine::Init( const char* title, int width, int height ) {
         return 1;
     }
 
-    m_Renderer = SDL_CreateRenderer( m_Window, -1, SDL_RENDERER_ACCELERATED );
+    m_Renderer = SDL_CreateRenderer( m_Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
     if( m_Renderer == NULL ) {
       printf( "Could not create renderer. SDL Error %s\n", SDL_GetError() );

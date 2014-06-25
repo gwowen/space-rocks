@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 #include "gamestate.h"
 #include "graphics.h"
+#include "background.h"
 
 class playState: public gameState {
     
@@ -35,6 +36,9 @@ class playState: public gameState {
             static playState m_playState;
             
             SDL_Texture* temp;
+            SDL_Surface* bgSurface;
+            SDL_Texture* bgTexture;
+            Star bgStars[NUM_STARS];
             
     
 };
