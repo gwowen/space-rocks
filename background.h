@@ -14,9 +14,9 @@ typedef struct Star {
     int x, y, speed;
 } Star;
 
-void resetStars( Star stars[NUM_STARS] );
-void doStars( Star stars[NUM_STARS] );
-void updateStars( SDL_Surface* &updateSurface, Star stars[NUM_STARS] );
+void resetStarBackground( Star stars[NUM_STARS] );
+void doStarBackground( Star stars[NUM_STARS] );
+void updateStarBackground( SDL_Surface* &updateSurface, Star stars[NUM_STARS] );
 int  getStarColor( int, SDL_Surface* &colorSurface );
 
 

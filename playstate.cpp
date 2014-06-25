@@ -26,7 +26,7 @@ void playState::Init( gameEngine* game ) {
     
     
     
-  resetStars( bgStars );
+  resetStarBackground( bgStars );
     
 }
 
@@ -64,8 +64,8 @@ void playState::handleEvents( gameEngine* game ) {
 
 void playState::Update( gameEngine* game) {
     
-    doStars( bgStars );
-    updateStars( bgSurface, bgStars );   
+    doStarBackground( bgStars );
+    updateStarBackground( bgSurface, bgStars );   
 }
 
 void playState::Draw( gameEngine* game) {
