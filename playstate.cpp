@@ -62,8 +62,21 @@ void playState::handleEvents( gameEngine* game ) {
 
         if( event.type == SDL_KEYDOWN && event.key.repeat == 0 ) {
             switch( event.key.keysym.sym ) {
+                case SDLK_w: testShip.shipYVel -= SHIP_VEL; break;
+                case SDLK_s: testShip.shipYVel += SHIP_VEL; break;
+                case SDLK_a: testShip.shipXVel -= SHIP_VEL; break;
+                case SDLK_d: testShip.shipXVel += SHIP_VEL; break;
                 case SDLK_ESCAPE: game->Quit();
                 default:break;
+            }
+        }
+        else if( event.type == SDL_KEYUP && event.key.repeat == 0 ) {
+          switch( event.key.keysym.sym ) {
+          case SDLK_w: testShip.shipYVel += SHIP_VEL; break;
+          case SDLK_s: testShip.shipYVel -= SHIP_VEL; break;
+          case SDLK_a: testShip.shipXVel += SHIP_VEL; break;
+          case SDLK_d: testShip.shipXVel -= SHIP_VEL; break;
+          default: break;
             }
         }
     }
@@ -73,13 +86,14 @@ void playState::Update( gameEngine* game) {
 
     doStarBackground( bgStars );
     updateStarBackground( bgSurface, bgStars );
+    testShip.Loop();
 }
 
 void playState::Draw( gameEngine* game) {
 
     SDL_UpdateTexture( bgTexture, NULL, bgSurface->pixels, bgSurface->pitch );
     SDL_RenderCopy( game->m_Renderer, bgTexture, NULL, NULL );
-    //Texture::textureDraw( shipTest, game->m_Renderer, 100, 100  );
+
     for( int i = 0; i < Entity::entityList.size(); ++i ) {
       if( !Entity::entityList[i] ) continue;
       Entity::entityList[i]->Render( game-> m_Renderer);
