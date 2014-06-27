@@ -1,6 +1,9 @@
 #include "background.h"
 
-void resetStars( Star stars[NUM_STARS] ) {
+//resetStarBackground - randomly places stars on screen with a random speed
+// @param star - the array of stars we use as the background
+
+void resetStarBackground( Star stars[NUM_STARS] ) {
     for( int i = 0; i < NUM_STARS; ++i ) {
         stars[i].x = rand() % SCREEN_WIDTH;
         stars[i].y = rand() % SCREEN_HEIGHT;
@@ -9,7 +12,11 @@ void resetStars( Star stars[NUM_STARS] ) {
 
 }
 
-void doStars( Star stars[NUM_STARS] ) {
+//doStarBackground - loops through the stars and moves them backwards
+//by subtracting the speed from the star's current position
+//@param stars - the array of stars we use as the background
+
+void doStarBackground( Star stars[NUM_STARS] ) {
     for( int i = 0; i < NUM_STARS; ++i ) {
         stars[i].x -= stars[i].speed;
         
@@ -22,7 +29,11 @@ void doStars( Star stars[NUM_STARS] ) {
     
 }
 
-void updateStars( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) {
+//updateStarBackground - updates the background
+//@param - updateSurface - the SDL Surface we blit to
+//@param - stars - the array of stars we use as the background
+
+void updateStarBackground( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) {
     SDL_Rect rect;
     
     SDL_FillRect( updateSurface, NULL, 0 );
@@ -38,6 +49,11 @@ void updateStars( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) {
     }
     
 }
+
+//getStarColor - assigns a color based on the speed of the star
+//@param - speed - the speed of the star assigned
+//@param - colorSurface - the SDL Surface being passed to set the RGB values on
+//@return MapRGB - we map the RGB value and then return it
 
 int  getStarColor( int speed, SDL_Surface* &colorSurface ) {
     SDL_Color color;
