@@ -22,7 +22,7 @@ void Ship::Loop() {
     entityBox.x = 0;
   }
   else if( entityBox.x + entityBox.w > SCREEN_WIDTH ) {
-    entityBox.x = SCREEN_WIDTH - entityBox.w;
+    entityBox.x = entityBox.x - entityBox.w;
   }
 
   if( entityBox.y <= 0) {
