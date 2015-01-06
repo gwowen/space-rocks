@@ -11,7 +11,7 @@ Entity::~Entity() {
 }
 
 void Entity::Load( std::string file, SDL_Renderer* &loadRenderer, int x, int y, int width, int height ) {
-  texEntity = Texture::textureLoad( file.c_str(), loadRenderer );
+  texEntity = textureLoad( file.c_str(), loadRenderer );
   entityBox.x = x;
   entityBox.y = y;
   entityBox.h = height;
@@ -24,7 +24,7 @@ void Entity::Event() {
 }
 
 void Entity::Render( SDL_Renderer* &entityRenderer ) {
-  Texture::textureDraw( texEntity, entityRenderer, entityBox.x, entityBox.y );
+  textureDraw( texEntity, entityRenderer, entityBox.x, entityBox.y );
 }
 
 void Entity::Cleanup() {

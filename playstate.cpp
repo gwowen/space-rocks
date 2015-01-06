@@ -19,13 +19,13 @@ void playState::Init( gameEngine* game ) {
                                       0,
                                       0 );
 
-    bgTexture = SDL_CreateTexture( game->m_Renderer,
+    bgTexture = SDL_CreateTexture( game->gameRenderer,
                                     SDL_PIXELFORMAT_ARGB8888,
                                     SDL_TEXTUREACCESS_STREAMING,
                                     SCREEN_WIDTH, SCREEN_HEIGHT );
 
-    shipTest = Texture::textureLoad( "../assets/firefly.png", game->m_Renderer);
-    testShip.Load( "../assets/firefly.png", game->m_Renderer, 200, 200, 25, 14 );
+    shipTest = textureLoad( "../assets/firefly.png", game->gameRenderer);
+    testShip.Load( "../assets/firefly.png", game->gameRenderer, 200, 200, 25, 14 );
     Entity::entityList.push_back( &testShip );
 
 
@@ -92,13 +92,13 @@ void playState::Update( gameEngine* game) {
 void playState::Draw( gameEngine* game) {
 
     SDL_UpdateTexture( bgTexture, NULL, bgSurface->pixels, bgSurface->pitch );
-    SDL_RenderCopy( game->m_Renderer, bgTexture, NULL, NULL );
+    SDL_RenderCopy( game->gameRenderer, bgTexture, NULL, NULL );
 
     for( int i = 0; i < Entity::entityList.size(); ++i ) {
       if( !Entity::entityList[i] ) continue;
-      Entity::entityList[i]->Render( game-> m_Renderer);
+      Entity::entityList[i]->Render( game-> gameRenderer);
     }
 
-    SDL_RenderPresent( game->m_Renderer );
+    SDL_RenderPresent( game->gameRenderer );
 
 }

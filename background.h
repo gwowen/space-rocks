@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   background.h
  * Author: gareth
  *
@@ -21,4 +21,3 @@ int  getStarColor( int, SDL_Surface* &colorSurface );
 
 
 #endif	/* BACKGROUND_H */
-

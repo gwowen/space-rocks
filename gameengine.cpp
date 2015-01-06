@@ -10,20 +10,20 @@ bool gameEngine::Init( const char* title, int width, int height ) {
         printf( "Failed to start SDL\n");
         return false;
     }
-    
-    m_Window = SDL_CreateWindow( title, SDL_WINDOWPOS_UNDEFINED, 
-                                        SDL_WINDOWPOS_UNDEFINED, 
-                                        width, 
+
+    gameWindow = SDL_CreateWindow( title, SDL_WINDOWPOS_UNDEFINED,
+                                        SDL_WINDOWPOS_UNDEFINED,
+                                        width,
                                         height,
                                         SDL_WINDOW_SHOWN );
-    if( m_Window == NULL ) {
+    if( gameWindow == NULL ) {
         printf( "Could not create window. SDL Error %s", SDL_GetError() );
         return 1;
     }
 
-    m_Renderer = SDL_CreateRenderer( m_Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+    gameRenderer = SDL_CreateRenderer( gameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
 
-    if( m_Renderer == NULL ) {
+    if( gameRenderer == NULL ) {
       printf( "Could not create renderer. SDL Error %s\n", SDL_GetError() );
       return false;
     }
@@ -34,14 +34,14 @@ bool gameEngine::Init( const char* title, int width, int height ) {
 	return false;
       }
     }
-    
- 
-    
+
+
+
     m_Running = true;
     printf( "gameEngine init\n" );
-    
+
     return true;
-    
+
 }
 
 void gameEngine::Cleanup() {
@@ -49,10 +49,10 @@ void gameEngine::Cleanup() {
         states.back()->Cleanup();
         states.pop_back();
     }
-    
+
     printf( "gameEngine cleanup\n" );
-    SDL_DestroyWindow( m_Window );
-    SDL_DestroyRenderer( m_Renderer );
+    SDL_DestroyWindow( gameWindow );
+    SDL_DestroyRenderer( gameRenderer );
     IMG_Quit();
     SDL_Quit();
 }
@@ -62,17 +62,17 @@ void gameEngine::changeState(gameState* state) {
         states.back()->Cleanup();
         states.pop_back();
     }
-    
+
     states.push_back( state );
     states.back()->Init( this );
-    
+
 }
 
 void gameEngine::pushState(gameState* state) {
     if( !states.empty() ){
         states.back()->Pause();
     }
-    
+
     states.push_back( state );
     states.back()->Init( this );
 }
@@ -82,7 +82,7 @@ void gameEngine::popState() {
         states.back()->Cleanup();
         states.pop_back();
     }
-   
+
     if( ! states.empty() ) {
         states.back()->Resume();
     }
@@ -94,10 +94,10 @@ void gameEngine::handleEvents() {
 
 void gameEngine::Update() {
     states.back()->Update( this );
-    
+
 }
 
 void gameEngine::Draw() {
     states.back()->Draw( this );
-    
+
 }

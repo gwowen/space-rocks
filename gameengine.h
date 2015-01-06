@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   gameengine.h
  * Author: gareth
  *
@@ -22,20 +22,20 @@ public:
     void changeState( gameState* state );
     void pushState( gameState* state );
     void popState();
-    
+
     void handleEvents();
     void Update();
     void Draw();
-    
+
     bool Running() { return m_Running; }
     void Quit() { m_Running = false; }
-    
-    //game's window & renderer
-    
-    SDL_Window* m_Window;
-    
-    SDL_Renderer* m_Renderer;
-    
+
+    //game's window
+    SDL_Window* gameWindow;
+
+    //game's rendering target
+    SDL_Renderer* gameRenderer;
+
 private:
     //game state stack... which will be staying as one for a while
     vector<gameState*> states;
@@ -46,4 +46,3 @@ private:
 
 
 #endif	/* GAMEENGINE_H */
-

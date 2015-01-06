@@ -19,14 +19,14 @@ void resetStarBackground( Star stars[NUM_STARS] ) {
 void doStarBackground( Star stars[NUM_STARS] ) {
     for( int i = 0; i < NUM_STARS; ++i ) {
         stars[i].x -= stars[i].speed;
-        
+
         if( stars[i].x < 0) {
             stars[i].x = SCREEN_WIDTH + rand() % 20;
             stars[i].y = rand() % SCREEN_HEIGHT;
             stars[i].speed = 1 + ( rand() % 12 );
         }
     }
-    
+
 }
 
 //updateStarBackground - updates the background
@@ -35,7 +35,7 @@ void doStarBackground( Star stars[NUM_STARS] ) {
 
 void updateStarBackground( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) {
     SDL_Rect rect;
-    
+
     SDL_FillRect( updateSurface, NULL, 0 );
     for( int i = 0; i < NUM_STARS; ++i ) {
         if( stars[i].x < SCREEN_WIDTH ) {
@@ -43,11 +43,11 @@ void updateStarBackground( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) 
             rect.y = stars[i].y;
             rect.w = 1;
             rect.h = 1;
-            
+
             SDL_FillRect( updateSurface, &rect, getStarColor( stars[i].speed, updateSurface ) );
         }
     }
-    
+
 }
 
 //getStarColor - assigns a color based on the speed of the star
@@ -57,9 +57,9 @@ void updateStarBackground( SDL_Surface* &updateSurface, Star stars[NUM_STARS] ) 
 
 int  getStarColor( int speed, SDL_Surface* &colorSurface ) {
     SDL_Color color;
-    
+
     switch( speed ) {
-    
+
     case 1:
     case 2:
     case 3:
@@ -82,4 +82,3 @@ int  getStarColor( int speed, SDL_Surface* &colorSurface ) {
     }
     return SDL_MapRGB( colorSurface->format, color.r, color.g, color.b );
 }
-

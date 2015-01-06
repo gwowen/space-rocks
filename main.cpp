@@ -4,20 +4,20 @@
 
 int main( int argc, char* argv[] ) {
     gameEngine game;
-    
+
     if( !game.Init("Space Rocks!") ) {
         printf( "Game failed to initialize\n");
     }
-    
+
     game.changeState( playState::Instance() );
-    
+
     while( game.Running() ) {
        game.handleEvents();
        game.Update();
        game.Draw();
     }
-    
+
     game.Cleanup();
-    
+
     return 0;
 }

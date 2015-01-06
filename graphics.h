@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   graphics.h
  * Author: gareth
  *
@@ -12,19 +12,13 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 
-class Texture {
-public:
-    Texture();
-    
-    static SDL_Texture* textureLoad( std::string fileName , SDL_Renderer* &texLoadRenderer);
-    
-    static void textureDraw( SDL_Texture* & texDrawTex, SDL_Renderer* &texDrawRenderer, int x, int y, 
-        SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE  );
-    
-    static SDL_Texture* drawText( TTF_Font* &drawFont, SDL_Renderer* &drawTextRenderer, std::string inputText );
-};
+SDL_Texture* textureLoad( std::string fileName , SDL_Renderer* &texLoadRenderer);
+
+void textureDraw( SDL_Texture* &drawTex, SDL_Renderer* &drawRenderer, int x, int y );
+
+//static SDL_Texture* drawText( TTF_Font* &drawFont, SDL_Renderer* &drawTextRenderer, std::string inputText );
+
 
 
 
 #endif	/* GRAPHICS_H */
-

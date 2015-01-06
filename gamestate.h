@@ -14,14 +14,14 @@ class gameState {
 public:
     virtual void Init( gameEngine* game ) = 0;
     virtual void Cleanup() = 0;
-    
+
     virtual void Pause() = 0;
     virtual void Resume() = 0;
-    
+
     virtual void handleEvents( gameEngine* game ) = 0;
     virtual void Update( gameEngine* game ) = 0;
     virtual void Draw( gameEngine* game ) = 0;
-    
+
     void changeState( gameEngine* game, gameState* state ) {
         game->changeState( state );
     }
@@ -32,4 +32,3 @@ protected:
 
 
 #endif	/* GAMESTATE_H */
-
