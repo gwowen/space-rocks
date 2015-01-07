@@ -15,21 +15,18 @@
 #include "graphics.h"
 
 class Entity {
-protected:
-  SDL_Texture* texEntity;
 
 public:
-  static std::vector<Entity*> entityList;
-  SDL_Rect entityBox;
 
-  int entityXVel;
-  int entityYVel;
-
+  bool isActive;
+  int speed;
+  int x, y, w, h;
+  SDL_Texture* sprite;
+  int currentFrame, animID, frameTimer;
   Entity();
   virtual ~Entity();
-
   virtual void Load( std::string file, SDL_Renderer* &loadRenderer, int x, int y, int width, int height );
-  virtual void Event();
+  virtual void Update();
   virtual void Render( SDL_Renderer* &entityRenderer );
   virtual void Cleanup();
 

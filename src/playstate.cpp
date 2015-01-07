@@ -24,8 +24,8 @@ void playState::Init( gameEngine* game ) {
                                     SDL_TEXTUREACCESS_STREAMING,
                                     SCREEN_WIDTH, SCREEN_HEIGHT );
 
-    shipTest = textureLoad( "../assets/firefly.png", game->gameRenderer);
-    testShip.Load( "../assets/firefly.png", game->gameRenderer, 200, 200, 25, 14 );
+    shipTest = textureLoad( "../gfx/firefly.png", game->gameRenderer);
+    testShip.Load( "../gfx/firefly.png", game->gameRenderer, 200, 200, 25, 14 );
     Entity::entityList.push_back( &testShip );
 
 
